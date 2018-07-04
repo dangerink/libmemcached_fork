@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Retrieving data from the server &mdash; libmemcached 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="libmemcached 1.1.0 documentation" href="index.html" />
+    <link rel="next" title="Working with result sets" href="memcached_result_st.html" />
+    <link rel="prev" title="Wiping clean the contents of a server" href="memcached_flush.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="memcached_result_st.html" title="Working with result sets"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="memcached_flush.html" title="Wiping clean the contents of a server"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="retrieving-data-from-the-server">
+<h1>Retrieving data from the server<a class="headerlink" href="#retrieving-data-from-the-server" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<span id="index-0"></span><h2>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>#include &lt;libmemcached/memcached.h&gt;</p>
+<dl class="function">
+<dt id="c.memcached_fetch_result">
+<a class="reference internal" href="memcached_result_st.html#c.memcached_result_st" title="memcached_result_st">memcached_result_st</a> * <code class="descname">memcached_fetch_result</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, <a class="reference internal" href="memcached_result_st.html#c.memcached_result_st" title="memcached_result_st">memcached_result_st</a><em>&nbsp;*result</em>, <a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a><em>&nbsp;*error</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_fetch_result" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_get">
+char * <code class="descname">memcached_get</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, const char<em>&nbsp;*key</em>, size_t<em>&nbsp;key_length</em>, size_t<em>&nbsp;*value_length</em>, <a class="reference internal" href="types.html#c.uint32_t" title="uint32_t">uint32_t</a><em>&nbsp;*flags</em>, <a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a><em>&nbsp;*error</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_mget">
+<a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a> <code class="descname">memcached_mget</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, const char * const<em>&nbsp;*keys</em>, const size_t<em>&nbsp;*key_length</em>, size_t<em>&nbsp;number_of_keys</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_mget" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_get_by_key">
+char * <code class="descname">memcached_get_by_key</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, const char<em>&nbsp;*group_key</em>, size_t<em>&nbsp;group_key_length</em>, const char<em>&nbsp;*key</em>, size_t<em>&nbsp;key_length</em>, size_t<em>&nbsp;*value_length</em>, <a class="reference internal" href="types.html#c.uint32_t" title="uint32_t">uint32_t</a><em>&nbsp;*flags</em>, <a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a><em>&nbsp;*error</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_get_by_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_mget_by_key">
+<a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a> <code class="descname">memcached_mget_by_key</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, const char<em>&nbsp;*group_key</em>, size_t<em>&nbsp;group_key_length</em>, const char * const<em>&nbsp;*keys</em>, const size_t<em>&nbsp;*key_length</em>, size_t<em>&nbsp;number_of_keys</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_mget_by_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_fetch_execute">
+<a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a> <code class="descname">memcached_fetch_execute</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, <a class="reference internal" href="#c.memcached_execute_fn" title="memcached_execute_fn">memcached_execute_fn</a><em>&nbsp;*callback</em>, void<em>&nbsp;*context</em>, <a class="reference internal" href="types.html#c.uint32_t" title="uint32_t">uint32_t</a><em>&nbsp;number_of_callbacks</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_fetch_execute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_mget_execute">
+<a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a> <code class="descname">memcached_mget_execute</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, const char * const<em>&nbsp;*keys</em>, const size_t<em>&nbsp;*key_length</em>, size_t<em>&nbsp;number_of_keys</em>, <a class="reference internal" href="#c.memcached_execute_fn" title="memcached_execute_fn">memcached_execute_fn</a><em>&nbsp;*callback</em>, void<em>&nbsp;*context</em>, <a class="reference internal" href="types.html#c.uint32_t" title="uint32_t">uint32_t</a><em>&nbsp;number_of_callbacks</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_mget_execute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_mget_execute_by_key">
+<a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a> <code class="descname">memcached_mget_execute_by_key</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, const char<em>&nbsp;*group_key</em>, size_t<em>&nbsp;group_key_length</em>, const char * const<em>&nbsp;*keys</em>, const size_t<em>&nbsp;*key_length</em>, size_t<em>&nbsp;number_of_keys</em>, <a class="reference internal" href="#c.memcached_execute_fn" title="memcached_execute_fn">memcached_execute_fn</a><em>&nbsp;*callback</em>, void<em>&nbsp;*context</em>, <a class="reference internal" href="types.html#c.uint32_t" title="uint32_t">uint32_t</a><em>&nbsp;number_of_callbacks</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_mget_execute_by_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="c.memcached_execute_fn">
+<a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a> <code class="descname">(*memcached_execute_fn)</code><span class="sig-paren">(</span>const <a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, <a class="reference internal" href="memcached_result_st.html#c.memcached_result_st" title="memcached_result_st">memcached_result_st</a><em>&nbsp;*result</em>, void<em>&nbsp;*context</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_execute_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Compile and link with -lmemcached</p>
+</div>
+<div class="section" id="description">
+<h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#c.memcached_get" title="memcached_get"><code class="xref c c-func docutils literal"><span class="pre">memcached_get()</span></code></a> is used to fetch an individual value from the server.
+You must pass in a key and its length to fetch the object. You must supply
+three pointer variables which will give you the state of the returned
+object.  A <a class="reference internal" href="types.html#c.uint32_t" title="uint32_t"><code class="xref c c-type docutils literal"><span class="pre">uint32_t</span></code></a> pointer to contain whatever flags you stored with the value, a <a class="reference internal" href="types.html#c.size_t" title="size_t"><code class="xref c c-type docutils literal"><span class="pre">size_t</span></code></a> pointer which will be filled with size of of
+the object, and a <a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t"><code class="xref c c-type docutils literal"><span class="pre">memcached_return_t</span></code></a> pointer to hold any error. The
+object will be returned upon success and NULL will be returned on failure. Any
+object returned by <a class="reference internal" href="#c.memcached_get" title="memcached_get"><code class="xref c c-func docutils literal"><span class="pre">memcached_get()</span></code></a> must be released by the caller
+application.</p>
+<p><a class="reference internal" href="#c.memcached_mget" title="memcached_mget"><code class="xref c c-func docutils literal"><span class="pre">memcached_mget()</span></code></a> is used to select multiple keys at once. For
+multiple key operations it is always faster to use this function. This function always works asynchronously.</p>
+<p>To retrieve data after a successful execution of <a class="reference internal" href="#c.memcached_mget" title="memcached_mget"><code class="xref c c-func docutils literal"><span class="pre">memcached_mget()</span></code></a>, you will need to
+call <a class="reference internal" href="#c.memcached_fetch_result" title="memcached_fetch_result"><code class="xref c c-func docutils literal"><span class="pre">memcached_fetch_result()</span></code></a>.  You should continue to call this function until
+it returns a NULL (i.e. no more values). If you need to quit in the middle of a
+<a class="reference internal" href="#c.memcached_mget" title="memcached_mget"><code class="xref c c-func docutils literal"><span class="pre">memcached_mget()</span></code></a> call, you can execute a <a class="reference internal" href="memcached_quit.html#c.memcached_quit" title="memcached_quit"><code class="xref c c-func docutils literal"><span class="pre">memcached_quit()</span></code></a>, those this is not required.</p>
+<p><a class="reference internal" href="#c.memcached_fetch_result" title="memcached_fetch_result"><code class="xref c c-func docutils literal"><span class="pre">memcached_fetch_result()</span></code></a> is used to fetch an individual value from the server. <a class="reference internal" href="#c.memcached_mget" title="memcached_mget"><code class="xref c c-func docutils literal"><span class="pre">memcached_mget()</span></code></a> must always be called before using this method.
+You must pass in a key and its length to fetch the object. You must supply
+three pointer variables which will give you the state of the returned
+object.  A <a class="reference internal" href="types.html#c.uint32_t" title="uint32_t"><code class="xref c c-type docutils literal"><span class="pre">uint32_t</span></code></a> pointer to contain whatever flags you stored with the value, a <a class="reference internal" href="types.html#c.size_t" title="size_t"><code class="xref c c-type docutils literal"><span class="pre">size_t</span></code></a> pointer which will be filled with size of of the
+object, and a <a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t"><code class="xref c c-type docutils literal"><span class="pre">memcached_return_t</span></code></a> pointer to hold any error. The
+object will be returned upon success and NULL will be returned on failure. <a class="reference internal" href="client_errors/MEMCACHED_END.html#c.MEMCACHED_END" title="MEMCACHED_END"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_END</span></code></a> is returned by the *error value when all objects that have been found are returned. The final value upon <a class="reference internal" href="client_errors/MEMCACHED_END.html#c.MEMCACHED_END" title="MEMCACHED_END"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_END</span></code></a> is null.</p>
+<p><a class="reference internal" href="#c.memcached_fetch_result" title="memcached_fetch_result"><code class="xref c c-func docutils literal"><span class="pre">memcached_fetch_result()</span></code></a> is used to return a <a class="reference internal" href="memcached_result_st.html#c.memcached_result_st" title="memcached_result_st"><code class="xref c c-type docutils literal"><span class="pre">memcached_result_st</span></code></a> structure from a memcached server. The result object is forward compatible
+with changes to the server. For more information please refer to the
+<a class="reference internal" href="memcached_result_st.html#c.memcached_result_st" title="memcached_result_st"><code class="xref c c-type docutils literal"><span class="pre">memcached_result_st</span></code></a> help. This function will dynamically allocate a
+result structure for you if you do not pass one to the function.</p>
+<p><a class="reference internal" href="#c.memcached_fetch_execute" title="memcached_fetch_execute"><code class="xref c c-func docutils literal"><span class="pre">memcached_fetch_execute()</span></code></a> is a callback function for result sets.
+Instead of returning the results to you for processing, it passes each of the
+result sets to the list of functions you provide. It passes to the function
+a <a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st"><code class="xref c c-type docutils literal"><span class="pre">memcached_st</span></code></a> that can be cloned for use in the called
+function (it can not be used directly). It also passes a result set which does
+not need to be freed. Finally it passes a &#8220;context&#8221;. This is just a pointer to
+a memory reference you supply the calling function. Currently only one value
+is being passed to each function call. In the future there will be an option
+to allow this to be an array.</p>
+<p><a class="reference internal" href="#c.memcached_mget_execute" title="memcached_mget_execute"><code class="xref c c-func docutils literal"><span class="pre">memcached_mget_execute()</span></code></a> and <a class="reference internal" href="#c.memcached_mget_execute_by_key" title="memcached_mget_execute_by_key"><code class="xref c c-func docutils literal"><span class="pre">memcached_mget_execute_by_key()</span></code></a>
+is similar to <a class="reference internal" href="#c.memcached_mget" title="memcached_mget"><code class="xref c c-func docutils literal"><span class="pre">memcached_mget()</span></code></a>, but it may trigger the supplied
+callbacks with result sets while sending out the queries. If you try to
+perform a really large multiget with <a class="reference internal" href="#c.memcached_mget" title="memcached_mget"><code class="xref c c-func docutils literal"><span class="pre">memcached_mget()</span></code></a> you may
+encounter a deadlock in the OS kernel (it will fail to write data to the
+socket because the input buffer is full). <a class="reference internal" href="#c.memcached_mget_execute" title="memcached_mget_execute"><code class="xref c c-func docutils literal"><span class="pre">memcached_mget_execute()</span></code></a>
+solves this problem by processing some of the results before continuing
+sending out requests. Please note that this function is only available in
+the binary protocol.</p>
+<p><a class="reference internal" href="#c.memcached_get_by_key" title="memcached_get_by_key"><code class="xref c c-func docutils literal"><span class="pre">memcached_get_by_key()</span></code></a> and <a class="reference internal" href="#c.memcached_mget_by_key" title="memcached_mget_by_key"><code class="xref c c-func docutils literal"><span class="pre">memcached_mget_by_key()</span></code></a> behave
+in a similar nature as <a class="reference internal" href="#c.memcached_get" title="memcached_get"><code class="xref c c-func docutils literal"><span class="pre">memcached_get()</span></code></a> and <a class="reference internal" href="#c.memcached_mget" title="memcached_mget"><code class="xref c c-func docutils literal"><span class="pre">memcached_mget()</span></code></a>.
+The difference is that they take a master key that is used for determining
+which server an object was stored if key partitioning was used for storage.</p>
+<p>All of the above functions are not tested when the
+<a class="reference internal" href="memcached_behavior.html#c.MEMCACHED_BEHAVIOR_USE_UDP" title="MEMCACHED_BEHAVIOR_USE_UDP"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_BEHAVIOR_USE_UDP</span></code></a> has been set. Executing any of these
+functions with this behavior on will result in <a class="reference internal" href="client_errors/MEMCACHED_NOT_SUPPORTED.html#c.MEMCACHED_NOT_SUPPORTED" title="MEMCACHED_NOT_SUPPORTED"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_NOT_SUPPORTED</span></code></a> being returned, or for those functions which do not return a <a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t"><code class="xref c c-type docutils literal"><span class="pre">memcached_return_t</span></code></a>, the error function parameter will be set to <a class="reference internal" href="client_errors/MEMCACHED_NOT_SUPPORTED.html#c.MEMCACHED_NOT_SUPPORTED" title="MEMCACHED_NOT_SUPPORTED"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_NOT_SUPPORTED</span></code></a>.</p>
+</div>
+<div class="section" id="return">
+<h2>RETURN<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h2>
+<p>All objects retrieved via <a class="reference internal" href="#c.memcached_get" title="memcached_get"><code class="xref c c-func docutils literal"><span class="pre">memcached_get()</span></code></a> or <a class="reference internal" href="#c.memcached_get_by_key" title="memcached_get_by_key"><code class="xref c c-func docutils literal"><span class="pre">memcached_get_by_key()</span></code></a> must be freed with <em class="manpage">free(3)</em>.</p>
+<p><a class="reference internal" href="#c.memcached_get" title="memcached_get"><code class="xref c c-func docutils literal"><span class="pre">memcached_get()</span></code></a> will return NULL on
+error. You must look at the value of error to determine what the actual error
+was.</p>
+<p><a class="reference internal" href="#c.memcached_fetch_execute" title="memcached_fetch_execute"><code class="xref c c-func docutils literal"><span class="pre">memcached_fetch_execute()</span></code></a> return <a class="reference internal" href="client_errors/MEMCACHED_SUCCESS.html#c.MEMCACHED_SUCCESS" title="MEMCACHED_SUCCESS"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_SUCCESS</span></code></a> if
+all keys were successful. <a class="reference internal" href="client_errors/MEMCACHED_NOTFOUND.html#c.MEMCACHED_NOTFOUND" title="MEMCACHED_NOTFOUND"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_NOTFOUND</span></code></a> will be return if no
+keys at all were found.</p>
+<p><a class="reference internal" href="#c.memcached_fetch_result" title="memcached_fetch_result"><code class="xref c c-func docutils literal"><span class="pre">memcached_fetch_result()</span></code></a> sets error
+to <a class="reference internal" href="client_errors/MEMCACHED_END.html#c.MEMCACHED_END" title="MEMCACHED_END"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_END</span></code></a> upon successful conclusion.
+<a class="reference internal" href="client_errors/MEMCACHED_NOTFOUND.html#c.MEMCACHED_NOTFOUND" title="MEMCACHED_NOTFOUND"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_NOTFOUND</span></code></a> will be return if no keys at all were found.</p>
+</div>
+<div class="section" id="home">
+<h2>HOME<a class="headerlink" href="#home" title="Permalink to this headline">¶</a></h2>
+<p>To find out more information please check:
+<a class="reference external" href="http://libmemcached.org/">http://libmemcached.org/</a></p>
+</div>
+<div class="section" id="see-also">
+<h2>SEE ALSO<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><em class="manpage">memcached(1)</em> <em class="manpage">libmemcached(3)</em> <em class="manpage">memcached_strerror(3)</em></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Retrieving data from the server</a><ul>
+<li><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li><a class="reference internal" href="#return">RETURN</a></li>
+<li><a class="reference internal" href="#home">HOME</a></li>
+<li><a class="reference internal" href="#see-also">SEE ALSO</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="memcached_flush.html"
+                        title="previous chapter">Wiping clean the contents of a server</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="memcached_result_st.html"
+                        title="next chapter">Working with result sets</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="memcached_result_st.html" title="Working with result sets"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="memcached_flush.html" title="Wiping clean the contents of a server"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2013, Brian Aker DataDifferential, http://datadifferential.com/.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

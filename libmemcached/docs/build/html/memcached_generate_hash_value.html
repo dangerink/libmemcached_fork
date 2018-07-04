@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Generating hash values directly &mdash; libmemcached 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="libmemcached 1.1.0 documentation" href="index.html" />
+    <link rel="next" title="Use custom allocators for embedded usage" href="memcached_memory_allocators.html" />
+    <link rel="prev" title="Dumping data from a server" href="memcached_dump.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="memcached_memory_allocators.html" title="Use custom allocators for embedded usage"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="memcached_dump.html" title="Dumping data from a server"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="generating-hash-values-directly">
+<h1>Generating hash values directly<a class="headerlink" href="#generating-hash-values-directly" title="Permalink to this headline">¶</a></h1>
+<p id="index-0">Hash a key value</p>
+<div class="section" id="synopsis">
+<h2>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>#include &lt;libmemcached/memcached.h&gt;</p>
+<dl class="type">
+<dt id="c.memcached_hash_t">
+<code class="descname">memcached_hash_t</code><a class="headerlink" href="#c.memcached_hash_t" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_generate_hash_value">
+<a class="reference internal" href="types.html#c.uint32_t" title="uint32_t">uint32_t</a> <code class="descname">memcached_generate_hash_value</code><span class="sig-paren">(</span>const char<em>&nbsp;*key</em>, size_t<em>&nbsp;key_length</em>, <a class="reference internal" href="#c.memcached_hash_t" title="memcached_hash_t">memcached_hash_t</a><em>&nbsp;hash_algorithm</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_generate_hash_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_generate_hash">
+<a class="reference internal" href="types.html#c.uint32_t" title="uint32_t">uint32_t</a> <code class="descname">memcached_generate_hash</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, const char<em>&nbsp;*key</em>, size_t<em>&nbsp;key_length</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_generate_hash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="c.MEMCACHED_HASH_DEFAULT">
+<code class="descname">MEMCACHED_HASH_DEFAULT</code><a class="headerlink" href="#c.MEMCACHED_HASH_DEFAULT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="c.MEMCACHED_HASH_MD5">
+<code class="descname">MEMCACHED_HASH_MD5</code><a class="headerlink" href="#c.MEMCACHED_HASH_MD5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="c.MEMCACHED_HASH_CRC">
+<code class="descname">MEMCACHED_HASH_CRC</code><a class="headerlink" href="#c.MEMCACHED_HASH_CRC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="c.MEMCACHED_HASH_FNV1_64">
+<code class="descname">MEMCACHED_HASH_FNV1_64</code><a class="headerlink" href="#c.MEMCACHED_HASH_FNV1_64" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="c.MEMCACHED_HASH_FNV1A_64">
+<code class="descname">MEMCACHED_HASH_FNV1A_64</code><a class="headerlink" href="#c.MEMCACHED_HASH_FNV1A_64" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="c.MEMCACHED_HASH_FNV1_32">
+<code class="descname">MEMCACHED_HASH_FNV1_32</code><a class="headerlink" href="#c.MEMCACHED_HASH_FNV1_32" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="c.MEMCACHED_HASH_FNV1A_32">
+<code class="descname">MEMCACHED_HASH_FNV1A_32</code><a class="headerlink" href="#c.MEMCACHED_HASH_FNV1A_32" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="c.MEMCACHED_HASH_JENKINS">
+<code class="descname">MEMCACHED_HASH_JENKINS</code><a class="headerlink" href="#c.MEMCACHED_HASH_JENKINS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="c.MEMCACHED_HASH_MURMUR">
+<code class="descname">MEMCACHED_HASH_MURMUR</code><a class="headerlink" href="#c.MEMCACHED_HASH_MURMUR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="c.MEMCACHED_HASH_HSIEH">
+<code class="descname">MEMCACHED_HASH_HSIEH</code><a class="headerlink" href="#c.MEMCACHED_HASH_HSIEH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="c.MEMCACHED_HASH_MURMUR3">
+<code class="descname">MEMCACHED_HASH_MURMUR3</code><a class="headerlink" href="#c.MEMCACHED_HASH_MURMUR3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Compile and link with -lmemcachedutil -lmemcached</p>
+</div>
+<div class="section" id="description">
+<h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#c.memcached_generate_hash_value" title="memcached_generate_hash_value"><code class="xref c c-func docutils literal"><span class="pre">memcached_generate_hash_value()</span></code></a> allows you to hash a key using one of
+the hash functions defined in the library. This method is provided for
+the convenience of higher-level language bindings and is not necessary
+for normal memcache operations.</p>
+<p>The allowed hash algorithm constants are listed in the manpage for
+<a class="reference internal" href="memcached_behavior.html#c.memcached_behavior_set" title="memcached_behavior_set"><code class="xref c c-func docutils literal"><span class="pre">memcached_behavior_set()</span></code></a>.</p>
+<p><a class="reference internal" href="#c.memcached_generate_hash" title="memcached_generate_hash"><code class="xref c c-func docutils literal"><span class="pre">memcached_generate_hash()</span></code></a> takes a <a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st"><code class="xref c c-type docutils literal"><span class="pre">memcached_st</span></code></a> struture
+and produces the hash value that would have been generated based on the
+defaults of <a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st"><code class="xref c c-type docutils literal"><span class="pre">memcached_st</span></code></a>.</p>
+<p>As of version 0.36 all hash methods have been placed into the library
+libhashkit(3) which is linked with libmemcached(3). For more information please see its documentation.</p>
+</div>
+<div class="section" id="return">
+<h2>RETURN<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h2>
+<p>A 32-bit integer which is the result of hashing the given key.
+For 64-bit hash algorithms, only the least-significant 32 bits are
+returned.</p>
+</div>
+<div class="section" id="home">
+<h2>HOME<a class="headerlink" href="#home" title="Permalink to this headline">¶</a></h2>
+<p>To find out more information please check:
+<a class="reference external" href="http://libmemcached.org/">http://libmemcached.org/</a></p>
+</div>
+<div class="section" id="author">
+<h2>AUTHOR<a class="headerlink" href="#author" title="Permalink to this headline">¶</a></h2>
+<p>Brian Aker, &lt;<a class="reference external" href="mailto:brian&#37;&#52;&#48;tangent&#46;org">brian<span>&#64;</span>tangent<span>&#46;</span>org</a>&gt;</p>
+</div>
+<div class="section" id="see-also">
+<h2>SEE ALSO<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><em class="manpage">memcached(1)</em> <em class="manpage">libmemcached(3)</em> <em class="manpage">memcached_strerror(3)</em></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Generating hash values directly</a><ul>
+<li><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li><a class="reference internal" href="#return">RETURN</a></li>
+<li><a class="reference internal" href="#home">HOME</a></li>
+<li><a class="reference internal" href="#author">AUTHOR</a></li>
+<li><a class="reference internal" href="#see-also">SEE ALSO</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="memcached_dump.html"
+                        title="previous chapter">Dumping data from a server</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="memcached_memory_allocators.html"
+                        title="next chapter">Use custom allocators for embedded usage</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="memcached_memory_allocators.html" title="Use custom allocators for embedded usage"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="memcached_dump.html" title="Dumping data from a server"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2013, Brian Aker DataDifferential, http://datadifferential.com/.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

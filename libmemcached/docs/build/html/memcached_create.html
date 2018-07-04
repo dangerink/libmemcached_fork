@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Creating and destroying a memcached_st &mdash; libmemcached 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="libmemcached 1.1.0 documentation" href="index.html" />
+    <link rel="next" title="Examples" href="libmemcached_examples.html" />
+    <link rel="prev" title="Versioning" href="versioning.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="libmemcached_examples.html" title="Examples"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="versioning.html" title="Versioning"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="creating-and-destroying-a-memcached-st">
+<h1>Creating and destroying a memcached_st<a class="headerlink" href="#creating-and-destroying-a-memcached-st" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>#include &lt;libmemcached/memcached.h&gt;</p>
+<dl class="type">
+<dt id="c.memcached_st">
+<code class="descname">memcached_st</code><a class="headerlink" href="#c.memcached_st" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_create">
+<a class="reference internal" href="#c.memcached_st" title="memcached_st">memcached_st</a>* <code class="descname">memcached_create</code><span class="sig-paren">(</span><a class="reference internal" href="#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_free">
+void <code class="descname">memcached_free</code><span class="sig-paren">(</span><a class="reference internal" href="#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_free" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_clone">
+<a class="reference internal" href="#c.memcached_st" title="memcached_st">memcached_st</a>* <code class="descname">memcached_clone</code><span class="sig-paren">(</span><a class="reference internal" href="#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*destination</em>, <a class="reference internal" href="#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*source</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_clone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_servers_reset">
+void <code class="descname">memcached_servers_reset</code><span class="sig-paren">(</span><a class="reference internal" href="#c.memcached_st" title="memcached_st">memcached_st</a><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_servers_reset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Compile and link with -lmemcached</p>
+</div>
+<div class="section" id="description">
+<h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#c.memcached_create" title="memcached_create"><code class="xref c c-func docutils literal"><span class="pre">memcached_create()</span></code></a> is used to create a <a class="reference internal" href="#c.memcached_st" title="memcached_st"><code class="xref c c-type docutils literal"><span class="pre">memcached_st</span></code></a>
+structure that will then be used by other libmemcached(3) functions to
+communicate with the server. You should either pass a statically declared
+<a class="reference internal" href="#c.memcached_st" title="memcached_st"><code class="xref c c-type docutils literal"><span class="pre">memcached_st</span></code></a> to <a class="reference internal" href="#c.memcached_create" title="memcached_create"><code class="xref c c-func docutils literal"><span class="pre">memcached_create()</span></code></a> or
+a NULL. If a NULL passed in then a structure is allocated for you.</p>
+<p>Please note, when you write new application use
+<a class="reference internal" href="libmemcached_configuration.html#c.memcached" title="memcached"><code class="xref c c-func docutils literal"><span class="pre">memcached()</span></code></a> over <a class="reference internal" href="#c.memcached_create" title="memcached_create"><code class="xref c c-func docutils literal"><span class="pre">memcached_create()</span></code></a>.</p>
+<p><a class="reference internal" href="#c.memcached_clone" title="memcached_clone"><code class="xref c c-func docutils literal"><span class="pre">memcached_clone()</span></code></a> is similar to <a class="reference internal" href="#c.memcached_create" title="memcached_create"><code class="xref c c-func docutils literal"><span class="pre">memcached_create()</span></code></a> but
+it copies the defaults and list of servers from the source
+<a class="reference internal" href="#c.memcached_st" title="memcached_st"><code class="xref c c-type docutils literal"><span class="pre">memcached_st</span></code></a>. If you pass a null as the argument for the source
+to clone, it is the same as a call to <a class="reference internal" href="#c.memcached_create" title="memcached_create"><code class="xref c c-func docutils literal"><span class="pre">memcached_create()</span></code></a>.
+If the destination argument is NULL a <a class="reference internal" href="#c.memcached_st" title="memcached_st"><code class="xref c c-type docutils literal"><span class="pre">memcached_st</span></code></a> will be allocated
+for you.</p>
+<p><a class="reference internal" href="#c.memcached_servers_reset" title="memcached_servers_reset"><code class="xref c c-func docutils literal"><span class="pre">memcached_servers_reset()</span></code></a> allows you to zero out the list of
+servers that the <a class="reference internal" href="#c.memcached_st" title="memcached_st"><code class="xref c c-type docutils literal"><span class="pre">memcached_st</span></code></a> has.</p>
+<p>To clean up memory associated with a <a class="reference internal" href="#c.memcached_st" title="memcached_st"><code class="xref c c-type docutils literal"><span class="pre">memcached_st</span></code></a> structure you
+should pass it to <a class="reference internal" href="#c.memcached_free" title="memcached_free"><code class="xref c c-func docutils literal"><span class="pre">memcached_free()</span></code></a> when you are finished using it.
+<a class="reference internal" href="#c.memcached_free" title="memcached_free"><code class="xref c c-func docutils literal"><span class="pre">memcached_free()</span></code></a> is the only way to make sure all memory is
+deallocated when you finish using the structure.</p>
+<p>You may wish to avoid using memcached_create(3) or memcached_clone(3) with a
+stack based allocation. The most common issues related to ABI safety involve
+heap allocated structures.</p>
+</div>
+<div class="section" id="return">
+<h2>RETURN<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#c.memcached_create" title="memcached_create"><code class="xref c c-func docutils literal"><span class="pre">memcached_create()</span></code></a> returns a pointer to the <a class="reference internal" href="#c.memcached_st" title="memcached_st"><code class="xref c c-type docutils literal"><span class="pre">memcached_st</span></code></a>
+that was created (or initialized). On an allocation failure, it returns NULL.</p>
+<p><a class="reference internal" href="#c.memcached_clone" title="memcached_clone"><code class="xref c c-func docutils literal"><span class="pre">memcached_clone()</span></code></a> returns a pointer to the <a class="reference internal" href="#c.memcached_st" title="memcached_st"><code class="xref c c-type docutils literal"><span class="pre">memcached_st</span></code></a>
+that was created (or initialized). On an allocation failure, it returns NULL.</p>
+</div>
+<div class="section" id="home">
+<h2>HOME<a class="headerlink" href="#home" title="Permalink to this headline">¶</a></h2>
+<p>To find out more information please check:
+<a class="reference external" href="http://libmemcached.org/">http://libmemcached.org/</a></p>
+</div>
+<div class="section" id="see-also">
+<h2>SEE ALSO<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><em class="manpage">memcached(1)</em> <em class="manpage">libmemcached(3)</em> <em class="manpage">memcached_strerror(3)</em></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Creating and destroying a memcached_st</a><ul>
+<li><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li><a class="reference internal" href="#return">RETURN</a></li>
+<li><a class="reference internal" href="#home">HOME</a></li>
+<li><a class="reference internal" href="#see-also">SEE ALSO</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="versioning.html"
+                        title="previous chapter">Versioning</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="libmemcached_examples.html"
+                        title="next chapter">Examples</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="libmemcached_examples.html" title="Examples"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="versioning.html" title="Versioning"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2013, Brian Aker DataDifferential, http://datadifferential.com/.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Appending or Prepending to data on the server &mdash; libmemcached 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="libmemcached 1.1.0 documentation" href="index.html" />
+    <link rel="next" title="Working with data on the server in an atomic fashion" href="memcached_cas.html" />
+    <link rel="prev" title="Store, replace, add, or atomically add data to the server" href="memcached_set.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="memcached_cas.html" title="Working with data on the server in an atomic fashion"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="memcached_set.html" title="Store, replace, add, or atomically add data to the server"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="appending-or-prepending-to-data-on-the-server">
+<h1>Appending or Prepending to data on the server<a class="headerlink" href="#appending-or-prepending-to-data-on-the-server" title="Permalink to this headline">¶</a></h1>
+<p id="index-0">Appending or Prepending to data on the server</p>
+<div class="section" id="synopsis">
+<h2>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>#include &lt;libmemcached/memcached.h&gt;</p>
+<dl class="function">
+<dt id="c.memcached_prepend">
+<a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a> <code class="descname">memcached_prepend</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, const char<em>&nbsp;*key</em>, size_t<em>&nbsp;key_length</em>, const char<em>&nbsp;*value</em>, size_t<em>&nbsp;value_length</em>, time_t<em>&nbsp;expiration</em>, <a class="reference internal" href="types.html#c.uint32_t" title="uint32_t">uint32_t</a><em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_prepend" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_append">
+<a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a> <code class="descname">memcached_append</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, const char<em>&nbsp;*key</em>, size_t<em>&nbsp;key_length</em>, const char<em>&nbsp;*value</em>, size_t<em>&nbsp;value_length</em>, time_t<em>&nbsp;expiration</em>, <a class="reference internal" href="types.html#c.uint32_t" title="uint32_t">uint32_t</a><em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_append" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_prepend_by_key">
+<a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a> <code class="descname">memcached_prepend_by_key</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, const char<em>&nbsp;*group_key</em>, size_t<em>&nbsp;group_key_length</em>, const char<em>&nbsp;*key</em>, size_t<em>&nbsp;key_length</em>, const char<em>&nbsp;*value</em>, size_t<em>&nbsp;value_length</em>, time_t<em>&nbsp;expiration</em>, <a class="reference internal" href="types.html#c.uint32_t" title="uint32_t">uint32_t</a><em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_prepend_by_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_append_by_key">
+<a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a> <code class="descname">memcached_append_by_key</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, const char<em>&nbsp;*group_key</em>, size_t<em>&nbsp;group_key_length</em>, const char<em>&nbsp;*key</em>, size_t<em>&nbsp;key_length</em>, const char<em>&nbsp;*value</em>, size_t<em>&nbsp;value_length</em>, time_t<em>&nbsp;expiration</em>, <a class="reference internal" href="types.html#c.uint32_t" title="uint32_t">uint32_t</a><em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_append_by_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Compile and link with -lmemcached</p>
+</div>
+<div class="section" id="description">
+<h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#c.memcached_prepend" title="memcached_prepend"><code class="xref c c-func docutils literal"><span class="pre">memcached_prepend()</span></code></a> and memcached_append are used to
+modify information on a server. All methods take a key, and its length to
+store the object. Keys are currently limited to 250 characters when using
+either a version of memcached which is 1.4 or below, or when using the text
+protocol. You must supply both a value and a length. Optionally you
+may test an expiration time for the object and a 16 byte value (it is
+meant to be used as a bitmap). &#8220;flags&#8221; is a 4byte space that is stored
+alongside of the main value. Many sub libraries make use of this field,
+so in most cases users should avoid making use of it.</p>
+<p><a class="reference internal" href="#c.memcached_prepend" title="memcached_prepend"><code class="xref c c-func docutils literal"><span class="pre">memcached_prepend()</span></code></a> places a segment of data before the last piece
+of data stored. Currently expiration and key are not used in the server.</p>
+<p><a class="reference internal" href="#c.memcached_append" title="memcached_append"><code class="xref c c-func docutils literal"><span class="pre">memcached_append()</span></code></a> places a segment of data at the end of the last
+piece of data stored. Currently expiration and key are not used in the server.</p>
+<p><a class="reference internal" href="#c.memcached_prepend_by_key" title="memcached_prepend_by_key"><code class="xref c c-func docutils literal"><span class="pre">memcached_prepend_by_key()</span></code></a> and
+<a class="reference internal" href="#c.memcached_append_by_key" title="memcached_append_by_key"><code class="xref c c-func docutils literal"><span class="pre">memcached_append_by_key()</span></code></a> methods both behave in a similar
+method as the non key methods. The difference is that they use their
+group_key parameter to map objects to particular servers.</p>
+<p>If you are looking for performance, <a class="reference internal" href="memcached_set.html#c.memcached_set" title="memcached_set"><code class="xref c c-func docutils literal"><span class="pre">memcached_set()</span></code></a> with non-blocking
+IO is the fastest way to store data on the server.</p>
+<p>All of the above functions are testsed with the
+<a class="reference internal" href="memcached_behavior.html#c.MEMCACHED_BEHAVIOR_USE_UDP" title="MEMCACHED_BEHAVIOR_USE_UDP"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_BEHAVIOR_USE_UDP</span></code></a> behavior enabled. However, when using
+these operations with this behavior on, there are limits to the size of the
+payload being sent to the server.  The reason for these limits is that the
+Memcached Server does not allow multi-datagram requests
+and the current server implementation sets a datagram size to 1400 bytes. Due
+to protocol overhead, the actual limit of the user supplied data is less than
+1400 bytes and depends on the protocol in use as, well as the operation being
+executed. When running with the binary protocol,
+<a class="reference internal" href="memcached_behavior.html#c.MEMCACHED_BEHAVIOR_BINARY_PROTOCOL" title="MEMCACHED_BEHAVIOR_BINARY_PROTOCOL"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_BEHAVIOR_BINARY_PROTOCOL</span></code></a>, the size of the key,value,
+flags and expiry combined may not exceed 1368 bytes. When running with the
+ASCII protocol, the exact limit fluctuates depending on which function is
+being executed and whether the function is a cas operation or not. For
+non-cas ASCII set operations, there are at least 1335 bytes available
+to split among the key, key_prefix, and value; for cas ASCII operations
+there are at least 1318 bytes available to split among the key, key_prefix
+and value. If the total size of the command, including overhead, exceeds
+1400 bytes, a <a class="reference internal" href="client_errors/MEMCACHED_WRITE_FAILURE.html#c.MEMCACHED_WRITE_FAILURE" title="MEMCACHED_WRITE_FAILURE"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_WRITE_FAILURE</span></code></a> will be returned.</p>
+</div>
+<div class="section" id="return">
+<h2>RETURN<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h2>
+<p>All methods return a value of type <a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t"><code class="xref c c-type docutils literal"><span class="pre">memcached_return_t</span></code></a>.
+On success the value will be <a class="reference internal" href="client_errors/MEMCACHED_SUCCESS.html#c.MEMCACHED_SUCCESS" title="MEMCACHED_SUCCESS"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_SUCCESS</span></code></a>.
+Use <a class="reference internal" href="memcached_strerror.html#c.memcached_strerror" title="memcached_strerror"><code class="xref c c-func docutils literal"><span class="pre">memcached_strerror()</span></code></a> to translate this value to a printable
+string.</p>
+</div>
+<div class="section" id="home">
+<h2>HOME<a class="headerlink" href="#home" title="Permalink to this headline">¶</a></h2>
+<p>To find out more information please check:
+<a class="reference external" href="http://libmemcached.org/">http://libmemcached.org/</a></p>
+</div>
+<div class="section" id="see-also">
+<h2>SEE ALSO<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><em class="manpage">memcached(1)</em> <em class="manpage">libmemached(3)</em> <em class="manpage">memcached_strerror(3)</em> <em class="manpage">memcached_set(3)</em> <em class="manpage">memcached_add(3)</em> <em class="manpage">memcached_cas(3)</em> <em class="manpage">memcached_replace(3)</em></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Appending or Prepending to data on the server</a><ul>
+<li><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li><a class="reference internal" href="#return">RETURN</a></li>
+<li><a class="reference internal" href="#home">HOME</a></li>
+<li><a class="reference internal" href="#see-also">SEE ALSO</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="memcached_set.html"
+                        title="previous chapter">Store, replace, add, or atomically add data to the server</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="memcached_cas.html"
+                        title="next chapter">Working with data on the server in an atomic fashion</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="memcached_cas.html" title="Working with data on the server in an atomic fashion"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="memcached_set.html" title="Store, replace, add, or atomically add data to the server"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2013, Brian Aker DataDifferential, http://datadifferential.com/.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

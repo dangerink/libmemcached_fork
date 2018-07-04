@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>memcapable - Checking a Memcached server capibilities and compatibility &mdash; libmemcached 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="libmemcached 1.1.0 documentation" href="../index.html" />
+    <link rel="next" title="memcat - “cat” data from a server" href="memcat.html" />
+    <link rel="prev" title="Working with memcached pools" href="../memcached_pool.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="memcat.html" title="memcat - “cat” data from a server"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../memcached_pool.html" title="Working with memcached pools"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="memcapable-checking-a-memcached-server-capibilities-and-compatibility">
+<h1>memcapable - Checking a Memcached server capibilities and compatibility<a class="headerlink" href="#memcapable-checking-a-memcached-server-capibilities-and-compatibility" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<h2>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>memcapable [options]</p>
+</div>
+<div class="section" id="description">
+<h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><strong class="program">memcapable</strong> connects to the specified memcached server and tries to
+determine its capabilities by running the various commands and verifying
+the response.</p>
+</div>
+<div class="section" id="limitations">
+<h2>LIMITATIONS<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<p>The current version of memcapable will only verify the binary protocol.</p>
+</div>
+<div class="section" id="options">
+<h2>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<dl class="option">
+<dt id="cmdoption-memcapable-h">
+<code class="descname">-h</code><code class="descclassname"> hostname</code><a class="headerlink" href="#cmdoption-memcapable-h" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Specify the hostname to connect to. The default is <em>localhost</em></p>
+<dl class="option">
+<dt id="cmdoption-memcapable-p">
+<code class="descname">-p</code><code class="descclassname"> port</code><a class="headerlink" href="#cmdoption-memcapable-p" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Specify the port number to connect to. The default is <em>11211</em></p>
+<dl class="option">
+<dt id="cmdoption-memcapable-c">
+<code class="descname">-c</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-memcapable-c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Generate a coredump when it detects an error from the server.</p>
+<dl class="option">
+<dt id="cmdoption-memcapable-v">
+<code class="descname">-v</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-memcapable-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Print out the comparison when it detects an error from the server.</p>
+<dl class="option">
+<dt id="cmdoption-memcapable-t">
+<code class="descname">-t</code><code class="descclassname"> n</code><a class="headerlink" href="#cmdoption-memcapable-t" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Set the timeout from an IO operation to/from the server to <em>n</em> seconds.</p>
+</div>
+<div class="section" id="home">
+<h2>HOME<a class="headerlink" href="#home" title="Permalink to this headline">¶</a></h2>
+<p>To find out more information please check:
+<a class="reference external" href="http://libmemcached.org/">http://libmemcached.org/</a></p>
+</div>
+<div class="section" id="author">
+<h2>AUTHOR<a class="headerlink" href="#author" title="Permalink to this headline">¶</a></h2>
+<p>Trond Norbye, &lt;<a class="reference external" href="mailto:trond&#46;norbye&#37;&#52;&#48;gmail&#46;com">trond<span>&#46;</span>norbye<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+</div>
+<div class="section" id="see-also">
+<h2>SEE ALSO<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><em class="manpage">memcached(1)</em> <em class="manpage">libmemcached(3)</em></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">memcapable - Checking a Memcached server capibilities and compatibility</a><ul>
+<li><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li><a class="reference internal" href="#limitations">LIMITATIONS</a></li>
+<li><a class="reference internal" href="#options">OPTIONS</a></li>
+<li><a class="reference internal" href="#home">HOME</a></li>
+<li><a class="reference internal" href="#author">AUTHOR</a></li>
+<li><a class="reference internal" href="#see-also">SEE ALSO</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../memcached_pool.html"
+                        title="previous chapter">Working with memcached pools</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="memcat.html"
+                        title="next chapter">memcat - &#8220;cat&#8221; data from a server</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="memcat.html" title="memcat - “cat” data from a server"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../memcached_pool.html" title="Working with memcached pools"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2013, Brian Aker DataDifferential, http://datadifferential.com/.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

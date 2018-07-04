@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Use custom allocators for embedded usage &mdash; libmemcached 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="libmemcached 1.1.0 documentation" href="index.html" />
+    <link rel="next" title="Disconnecting a client from a server" href="memcached_quit.html" />
+    <link rel="prev" title="Generating hash values directly" href="memcached_generate_hash_value.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="memcached_quit.html" title="Disconnecting a client from a server"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="memcached_generate_hash_value.html" title="Generating hash values directly"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="use-custom-allocators-for-embedded-usage">
+<h1>Use custom allocators for embedded usage<a class="headerlink" href="#use-custom-allocators-for-embedded-usage" title="Permalink to this headline">¶</a></h1>
+<p id="index-0">Manage memory allocator functions</p>
+<div class="section" id="synopsis">
+<h2>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>#include &lt;libmemcached/memcached.h&gt;</p>
+<dl class="function">
+<dt id="c.memcached_set_memory_allocators">
+<a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a> <code class="descname">memcached_set_memory_allocators</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, <a class="reference internal" href="#c.memcached_malloc_fn" title="memcached_malloc_fn">memcached_malloc_fn</a><em>&nbsp;mem_malloc</em>, <a class="reference internal" href="#c.memcached_free_fn" title="memcached_free_fn">memcached_free_fn</a><em>&nbsp;mem_free</em>, <a class="reference internal" href="#c.memcached_realloc_fn" title="memcached_realloc_fn">memcached_realloc_fn</a><em>&nbsp;mem_realloc</em>, <a class="reference internal" href="#c.memcached_calloc_fn" title="memcached_calloc_fn">memcached_calloc_fn</a><em>&nbsp;mem_calloc</em>, void<em>&nbsp;*context</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_set_memory_allocators" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_get_memory_allocators">
+void <code class="descname">memcached_get_memory_allocators</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, <a class="reference internal" href="#c.memcached_malloc_fn" title="memcached_malloc_fn">memcached_malloc_fn</a><em>&nbsp;*mem_malloc</em>, <a class="reference internal" href="#c.memcached_free_fn" title="memcached_free_fn">memcached_free_fn</a><em>&nbsp;*mem_free</em>, <a class="reference internal" href="#c.memcached_realloc_fn" title="memcached_realloc_fn">memcached_realloc_fn</a><em>&nbsp;*mem_realloc</em>, <a class="reference internal" href="#c.memcached_calloc_fn" title="memcached_calloc_fn">memcached_calloc_fn</a><em>&nbsp;*mem_calloc</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_get_memory_allocators" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_get_memory_allocators_context">
+void * <code class="descname">memcached_get_memory_allocators_context</code><span class="sig-paren">(</span>const <a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_get_memory_allocators_context" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_malloc_fn">
+void * <code class="descname">(*memcached_malloc_fn)</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, const size_t<em>&nbsp;size</em>, void<em>&nbsp;*context</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_malloc_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_realloc_fn">
+void * <code class="descname">(*memcached_realloc_fn)</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, void<em>&nbsp;*mem</em>, const size_t<em>&nbsp;size</em>, void<em>&nbsp;*context</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_realloc_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_free_fn">
+void <code class="descname">(*memcached_free_fn)</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, void<em>&nbsp;*mem</em>, void<em>&nbsp;*context</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_free_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="c.memcached_calloc_fn">
+void * <code class="descname">(*memcached_calloc_fn)</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, size_t<em>&nbsp;nelem</em>, const size_t<em>&nbsp;elsize</em>, void<em>&nbsp;*context</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_calloc_fn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Compile and link with -lmemcached</p>
+</div>
+<div class="section" id="description">
+<h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>libmemcached(3) allows you to specify your own memory allocators, optimized
+for your application. This enables libmemcached to be used inside of applications that have their own malloc implementation.</p>
+<p><a class="reference internal" href="#c.memcached_set_memory_allocators" title="memcached_set_memory_allocators"><code class="xref c c-func docutils literal"><span class="pre">memcached_set_memory_allocators()</span></code></a> is used to set the memory
+allocators used by the memcached instance specified by ptr. Please note that
+you cannot override only one of the memory allocators, you have to specify a
+complete new set if you want to override one of them. All of the memory
+allocation functions should behave as specified in the C99 standard. Specify
+NULL as all functions to reset them to the default values.</p>
+<p><a class="reference internal" href="#c.memcached_get_memory_allocators" title="memcached_get_memory_allocators"><code class="xref c c-func docutils literal"><span class="pre">memcached_get_memory_allocators()</span></code></a> is used to get the currently used
+memory allocators by a mamcached handle.</p>
+<p><a class="reference internal" href="#c.memcached_get_memory_allocators_context" title="memcached_get_memory_allocators_context"><code class="xref c c-func docutils literal"><span class="pre">memcached_get_memory_allocators_context()</span></code></a> returns the void * that
+was passed in during the call to <a class="reference internal" href="#c.memcached_set_memory_allocators" title="memcached_set_memory_allocators"><code class="xref c c-func docutils literal"><span class="pre">memcached_set_memory_allocators()</span></code></a>.</p>
+<p>The first argument to the memory allocator functions is a pointer to a
+memcached structure, the is passed as const and you will need to clone
+it in order to make use of any operation which would modify it.</p>
+</div>
+<div class="section" id="notes">
+<h2>NOTES<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>In version 0.38 all functions were modified to have a context void pointer
+passed to them. This was so that customer allocators could have their
+own space for memory.</p>
+</div>
+<div class="section" id="return">
+<h2>RETURN<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#c.memcached_set_memory_allocators" title="memcached_set_memory_allocators"><code class="xref c c-func docutils literal"><span class="pre">memcached_set_memory_allocators()</span></code></a> return <a class="reference internal" href="client_errors/MEMCACHED_SUCCESS.html#c.MEMCACHED_SUCCESS" title="MEMCACHED_SUCCESS"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_SUCCESS</span></code></a>
+upon success, and <a class="reference internal" href="client_errors/MEMCACHED_FAILURE.html#c.MEMCACHED_FAILURE" title="MEMCACHED_FAILURE"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_FAILURE</span></code></a> if you don&#8217;t pass a complete set
+of function pointers.</p>
+</div>
+<div class="section" id="home">
+<h2>HOME<a class="headerlink" href="#home" title="Permalink to this headline">¶</a></h2>
+<p>To find out more information please check:
+<a class="reference external" href="http://libmemcached.org/">http://libmemcached.org/</a></p>
+</div>
+<div class="section" id="see-also">
+<h2>SEE ALSO<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><em class="manpage">memcached(1)</em> <em class="manpage">libmemcached(3)</em> <em class="manpage">memcached_strerror(3)</em></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Use custom allocators for embedded usage</a><ul>
+<li><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li><a class="reference internal" href="#notes">NOTES</a></li>
+<li><a class="reference internal" href="#return">RETURN</a></li>
+<li><a class="reference internal" href="#home">HOME</a></li>
+<li><a class="reference internal" href="#see-also">SEE ALSO</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="memcached_generate_hash_value.html"
+                        title="previous chapter">Generating hash values directly</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="memcached_quit.html"
+                        title="next chapter">Disconnecting a client from a server</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="memcached_quit.html" title="Disconnecting a client from a server"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="memcached_generate_hash_value.html" title="Generating hash values directly"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2013, Brian Aker DataDifferential, http://datadifferential.com/.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>

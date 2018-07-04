@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>memcached_fetch &mdash; libmemcached 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="libmemcached 1.1.0 documentation" href="../index.html" />
+    <link rel="next" title="Systemtap support" href="../tap.html" />
+    <link rel="prev" title="libmemcached 1.1 API" href="../libmemcached-1.1/index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../tap.html" title="Systemtap support"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../libmemcached-1.1/index.html" title="libmemcached 1.1 API"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="memcached-fetch">
+<h1>memcached_fetch<a class="headerlink" href="#memcached-fetch" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<span id="index-0"></span><h2>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>#include &lt;libmemcached/memcached.h&gt;</p>
+<dl class="function">
+<dt id="c.memcached_fetch">
+char *<code class="descname">memcached_fetch</code><span class="sig-paren">(</span><a class="reference internal" href="../memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, char<em>&nbsp;*key</em>, size_t<em>&nbsp;*key_length</em>, size_t<em>&nbsp;*value_length</em>, <a class="reference internal" href="../types.html#c.uint32_t" title="uint32_t">uint32_t</a><em>&nbsp;*flags</em>, <a class="reference internal" href="memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a><em>&nbsp;*error</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_fetch" title="Permalink to this definition">¶</a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 0.50: </span>Use <a class="reference internal" href="../memcached_get.html#c.memcached_fetch_result" title="memcached_fetch_result"><code class="xref c c-func docutils literal"><span class="pre">memcached_fetch_result()</span></code></a> instead.</p>
+</div>
+</dd></dl>
+
+<p>Compile and link with -lmemcached</p>
+</div>
+<div class="section" id="description">
+<h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#c.memcached_fetch" title="memcached_fetch"><code class="xref c c-func docutils literal"><span class="pre">memcached_fetch()</span></code></a> is used to fetch an individual value from the server. <a class="reference internal" href="../memcached_get.html#c.memcached_mget" title="memcached_mget"><code class="xref c c-func docutils literal"><span class="pre">memcached_mget()</span></code></a> must always be called before using this method.
+You must pass in a key and its length to fetch the object. You must supply
+three pointer variables which will give you the state of the returned
+object.  A <a class="reference internal" href="../types.html#c.uint32_t" title="uint32_t"><code class="xref c c-type docutils literal"><span class="pre">uint32_t</span></code></a> pointer to contain whatever flags you stored with the value, a <a class="reference internal" href="../types.html#c.size_t" title="size_t"><code class="xref c c-type docutils literal"><span class="pre">size_t</span></code></a> pointer which will be filled with size of of the
+object, and a <a class="reference internal" href="memcached_return_t.html#c.memcached_return_t" title="memcached_return_t"><code class="xref c c-type docutils literal"><span class="pre">memcached_return_t</span></code></a> pointer to hold any error. The
+object will be returned upon success and NULL will be returned on failure. <a class="reference internal" href="../client_errors/MEMCACHED_END.html#c.MEMCACHED_END" title="MEMCACHED_END"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_END</span></code></a> is returned by the *error value when all objects that have been found are returned. The final value upon <a class="reference internal" href="../client_errors/MEMCACHED_END.html#c.MEMCACHED_END" title="MEMCACHED_END"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_END</span></code></a> is null.</p>
+<p>Values returned by <a class="reference internal" href="#c.memcached_fetch" title="memcached_fetch"><code class="xref c c-func docutils literal"><span class="pre">memcached_fetch()</span></code></a> must be freed by the caller.</p>
+<p>All of the above functions are not tested when the
+<a class="reference internal" href="../memcached_behavior.html#c.MEMCACHED_BEHAVIOR_USE_UDP" title="MEMCACHED_BEHAVIOR_USE_UDP"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_BEHAVIOR_USE_UDP</span></code></a> has been set. Executing any of these
+functions with this behavior on will result in <a class="reference internal" href="../client_errors/MEMCACHED_NOT_SUPPORTED.html#c.MEMCACHED_NOT_SUPPORTED" title="MEMCACHED_NOT_SUPPORTED"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_NOT_SUPPORTED</span></code></a> being returned, or for those functions which do not return a <a class="reference internal" href="memcached_return_t.html#c.memcached_return_t" title="memcached_return_t"><code class="xref c c-type docutils literal"><span class="pre">memcached_return_t</span></code></a>, the error function parameter will be set to <a class="reference internal" href="../client_errors/MEMCACHED_NOT_SUPPORTED.html#c.MEMCACHED_NOT_SUPPORTED" title="MEMCACHED_NOT_SUPPORTED"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_NOT_SUPPORTED</span></code></a>.</p>
+</div>
+<div class="section" id="return">
+<h2>RETURN<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#c.memcached_fetch" title="memcached_fetch"><code class="xref c c-func docutils literal"><span class="pre">memcached_fetch()</span></code></a> sets error to
+to <a class="reference internal" href="../client_errors/MEMCACHED_END.html#c.MEMCACHED_END" title="MEMCACHED_END"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_END</span></code></a> upon successful conclusion.
+<a class="reference internal" href="../client_errors/MEMCACHED_NOTFOUND.html#c.MEMCACHED_NOTFOUND" title="MEMCACHED_NOTFOUND"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_NOTFOUND</span></code></a> will be return if no keys at all were found.</p>
+<p><a class="reference internal" href="../client_errors/MEMCACHED_KEY_TOO_BIG.html#c.MEMCACHED_KEY_TOO_BIG" title="MEMCACHED_KEY_TOO_BIG"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_KEY_TOO_BIG</span></code></a> is set to error whenever <a class="reference internal" href="#c.memcached_fetch" title="memcached_fetch"><code class="xref c c-func docutils literal"><span class="pre">memcached_fetch()</span></code></a> was used
+and the key was set larger then <a class="reference internal" href="../libmemcached.html#c.MEMCACHED_MAX_KEY" title="MEMCACHED_MAX_KEY"><code class="xref c c-type docutils literal"><span class="pre">MEMCACHED_MAX_KEY</span></code></a>, which was the largest
+key allowed for the original memcached ascii server.</p>
+</div>
+<div class="section" id="home">
+<h2>HOME<a class="headerlink" href="#home" title="Permalink to this headline">¶</a></h2>
+<p>To find out more information please check:
+<a class="reference external" href="http://libmemcached.org/">http://libmemcached.org/</a></p>
+</div>
+<div class="section" id="see-also">
+<h2>SEE ALSO<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><em class="manpage">memcached(1)</em> <em class="manpage">libmemcached(3)</em> <em class="manpage">memcached_strerror(3)</em> <em class="manpage">memcached_fetch_result(3)</em></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">memcached_fetch</a><ul>
+<li><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li><a class="reference internal" href="#return">RETURN</a></li>
+<li><a class="reference internal" href="#home">HOME</a></li>
+<li><a class="reference internal" href="#see-also">SEE ALSO</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../libmemcached-1.1/index.html"
+                        title="previous chapter">libmemcached 1.1 API</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../tap.html"
+                        title="next chapter">Systemtap support</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../tap.html" title="Systemtap support"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../libmemcached-1.1/index.html" title="libmemcached 1.1 API"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2013, Brian Aker DataDifferential, http://datadifferential.com/.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>
