@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Coverting Errors, memcached_return_t, to strings &mdash; libmemcached 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="libmemcached 1.1.0 documentation" href="index.html" />
+    <link rel="next" title="Client Error messages" href="error_messages.html" />
+    <link rel="prev" title="Manipulate the server information stored in memcached_st" href="memcached_servers.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="error_messages.html" title="Client Error messages"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="memcached_servers.html" title="Manipulate the server information stored in memcached_st"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="coverting-errors-memcached-return-t-to-strings">
+<h1>Coverting Errors, memcached_return_t, to strings<a class="headerlink" href="#coverting-errors-memcached-return-t-to-strings" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="synopsis">
+<span id="index-0"></span><h2>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<p>#include &lt;libmemcached/memcached.h&gt;</p>
+<dl class="function">
+<dt id="c.memcached_strerror">
+const char * <code class="descname">memcached_strerror</code><span class="sig-paren">(</span><a class="reference internal" href="memcached_create.html#c.memcached_st" title="memcached_st">memcached_st</a><em>&nbsp;*ptr</em>, <a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t">memcached_return_t</a><em>&nbsp;rc</em><span class="sig-paren">)</span><a class="headerlink" href="#c.memcached_strerror" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Compile and link with -lmemcached</p>
+</div>
+<div class="section" id="description">
+<h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#c.memcached_strerror" title="memcached_strerror"><code class="xref c c-func docutils literal"><span class="pre">memcached_strerror()</span></code></a> takes a <a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t"><code class="xref c c-type docutils literal"><span class="pre">memcached_return_t</span></code></a> value and returns a string describing the error.</p>
+<p>This string must not be modified by the application.</p>
+<p><a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t"><code class="xref c c-type docutils literal"><span class="pre">memcached_return_t</span></code></a> values are returned from nearly all libmemcached(3) functions.</p>
+<p><a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t"><code class="xref c c-type docutils literal"><span class="pre">memcached_return_t</span></code></a> values are of an enum type so that you can set up responses with switch/case and know that you are capturing all possible return values.</p>
+</div>
+<div class="section" id="return">
+<h2>RETURN<a class="headerlink" href="#return" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#c.memcached_strerror" title="memcached_strerror"><code class="xref c c-func docutils literal"><span class="pre">memcached_strerror()</span></code></a> returns a string describing a <a class="reference internal" href="libmemcached/memcached_return_t.html#c.memcached_return_t" title="memcached_return_t"><code class="xref c c-type docutils literal"><span class="pre">memcached_return_t</span></code></a> value.</p>
+</div>
+<div class="section" id="home">
+<h2>HOME<a class="headerlink" href="#home" title="Permalink to this headline">¶</a></h2>
+<p>To find out more information please check:
+<a class="reference external" href="http://libmemcached.org/">http://libmemcached.org/</a></p>
+</div>
+<div class="section" id="see-also">
+<h2>SEE ALSO<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><em class="manpage">memcached(1)</em> <em class="manpage">libmemcached(3)</em></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Coverting Errors, memcached_return_t, to strings</a><ul>
+<li><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li><a class="reference internal" href="#return">RETURN</a></li>
+<li><a class="reference internal" href="#home">HOME</a></li>
+<li><a class="reference internal" href="#see-also">SEE ALSO</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="memcached_servers.html"
+                        title="previous chapter">Manipulate the server information stored in memcached_st</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="error_messages.html"
+                        title="next chapter">Client Error messages</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="error_messages.html" title="Client Error messages"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="memcached_servers.html" title="Manipulate the server information stored in memcached_st"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">libmemcached 1.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2011-2013, Brian Aker DataDifferential, http://datadifferential.com/.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.6.
+    </div>
+  </body>
+</html>
