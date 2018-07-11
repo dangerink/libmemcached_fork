@@ -38,13 +38,20 @@
 #include <libmemcached/common.h>
 #include <cstdlib>
 #include <stdlib.h>
+#include <sys/stat.h>
 
 //service function for log name forming
 static const std::string form_log_name(memcached_instance_st* inst)
 {
+  struct stat st;
   char buffer[64];
-  std::string host = inst->hostname(); 
-  snprintf(buffer, sizeof(buffer), "%s_%d.log", host.c_str(), getpid());
+  std::string host = inst->hostname();
+  if (stat("/log", &st) != 0)
+  {
+     fprintf(stdout, "%s", "creating directory log\n");
+     mkdir("/log", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+  }
+  snprintf(buffer, sizeof(buffer), "/log/%s_%d.log", host.c_str(), getpid());
   return std::string(buffer);  
 }
 
