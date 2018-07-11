@@ -178,6 +178,7 @@ struct memcached_instance_st {
   char write_buffer[MEMCACHED_MAX_BUFFER];
   char _hostname[MEMCACHED_NI_MAXHOST];
   log_info_st* logger;
+  std::string logname;
   void clear_addrinfo()
   {
     if (address_info)

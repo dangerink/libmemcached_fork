@@ -36,7 +36,17 @@
  */
 
 #include <libmemcached/common.h>
+#include <cstdlib>
+#include <stdlib.h>
 
+//service function for log name forming
+static const std::string form_log_name(memcached_instance_st* inst)
+{
+  char buffer[64];
+  std::string host = inst->hostname(); 
+  snprintf(buffer, sizeof(buffer), "%s_%d.log", host.c_str(), getpid());
+  return std::string(buffer);  
+}
 
 static inline void _server_init(memcached_instance_st* self, Memcached *root,
                                 const memcached_string_t& hostname,
@@ -57,6 +67,7 @@ static inline void _server_init(memcached_instance_st* self, Memcached *root,
   self->server_failure_counter_query_id= 0;
   self->server_timeout_counter= 0;
   self->server_timeout_counter_query_id= 0;
+
   self->weight= weight ? weight : 1; // 1 is the default weight value
   self->io_wait_count.read= 0;
   self->io_wait_count.write= 0;
@@ -88,7 +99,9 @@ static inline void _server_init(memcached_instance_st* self, Memcached *root,
   }
   self->limit_maxbytes= 0;
   self->hostname(hostname);
-  self->logger = new log_info_st("testlog", (std::string(self->hostname())+".log").c_str(), false);  
+  self->logname = form_log_name(self);
+  fprintf(stdout, "logging instance into %s\n", self->logname.c_str());
+  self->logger = new log_info_st("testlog", self->logname, false);  
 }
 
 static memcached_instance_st* _server_create(memcached_instance_st* self, const memcached_st *memc)
