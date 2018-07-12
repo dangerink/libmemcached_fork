@@ -57,9 +57,8 @@
 #endif
 
 #include "libmemcached/string.hpp"
-#include "util/log.hpp"
+
 // @todo Complete class transformation
-using namespace datadifferential::util;
 struct memcached_instance_st {
   in_port_t port() const
   {
@@ -177,8 +176,7 @@ struct memcached_instance_st {
   char read_buffer[MEMCACHED_MAX_BUFFER];
   char write_buffer[MEMCACHED_MAX_BUFFER];
   char _hostname[MEMCACHED_NI_MAXHOST];
-  log_info_st* logger;
-  std::string logname;
+
   void clear_addrinfo()
   {
     if (address_info)

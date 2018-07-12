@@ -37,7 +37,7 @@
 
 
 #include <libmemcached/common.h>
-#include "util/log.hpp"
+
 #include <cassert>
 
 #ifndef SOCK_CLOEXEC 
@@ -63,8 +63,6 @@
 #ifndef TCP_KEEPIDLE
 # define TCP_KEEPIDLE 0
 #endif
-
-using namespace datadifferential::util;
 
 static memcached_return_t connect_poll(memcached_instance_st* server, const int connection_error)
 {
@@ -664,8 +662,6 @@ static memcached_return_t network_connect(memcached_instance_st* server)
 */
 static memcached_return_t backoff_handling(memcached_instance_st* server, bool& in_timeout)
 {
-  //fprintf(stdout, "failover check entered\n");
-  server->logger->write(verbose_t::VERBOSE_INFO, "%s", "failover check entered\n");
   struct timeval curr_time;
   bool _gettime_success= (gettimeofday(&curr_time, NULL) == 0);
 
@@ -680,18 +676,13 @@ static memcached_return_t backoff_handling(memcached_instance_st* server, bool& 
     /*
       We just auto_eject if we hit this point 
     */
-    server->logger->write(verbose_t::VERBOSE_INFO, "%s", "failure limit exceeded");
-    fprintf(stdout, "failure limit exceeded\n");
     if (_is_auto_eject_host(server->root))
     {
-      server->logger->write(verbose_t::VERBOSE_INFO, "%s", "autoeject procedure started");
       set_last_disconnected_host(server);
 
       // Retry dead servers if requested
       if (_gettime_success and server->root->dead_timeout > 0)
       {
-        fprintf(stdout, "dead server rerty\n");
-        server->logger->write(verbose_t::VERBOSE_INFO, "%s", "dead server rerty\n");
         server->next_retry= curr_time.tv_sec +server->root->dead_timeout;
 
         // We only retry dead servers once before assuming failure again
@@ -703,8 +694,7 @@ static memcached_return_t backoff_handling(memcached_instance_st* server, bool& 
       {
         return memcached_set_error(*server, rc, MEMCACHED_AT, memcached_literal_param("Backoff handling failed during run_distribution"));
       }
-      fprintf(stdout, "server is marked dead\n");
-      server->logger->write(verbose_t::VERBOSE_INFO, "%s", "server is marked dead\n");
+
       return memcached_set_error(*server, MEMCACHED_SERVER_MARKED_DEAD, MEMCACHED_AT);
     }
 
@@ -722,10 +712,8 @@ static memcached_return_t backoff_handling(memcached_instance_st* server, bool& 
     /*
       If next_retry is less then our current time, then we reset and try everything again.
     */
-    server->logger->write(verbose_t::VERBOSE_INFO, "%s", "server state -- in timeout\n");
     if (_gettime_success and server->next_retry < curr_time.tv_sec)
     {
-      server->logger->write(verbose_t::VERBOSE_INFO, "%s", "reset and try again\n");
       server->state= MEMCACHED_SERVER_STATE_NEW;
       server->server_timeout_counter= 0;
     }
@@ -736,8 +724,7 @@ static memcached_return_t backoff_handling(memcached_instance_st* server, bool& 
 
     in_timeout= true;
   }
-  server->logger->write(verbose_t::VERBOSE_INFO, "%s", "failover check successfully passed");
-  fprintf(stdout, "failover check successfully passed\n");
+
   return MEMCACHED_SUCCESS;
 }
 
@@ -774,13 +761,10 @@ static memcached_return_t _memcached_connect(memcached_instance_st* server, cons
   {
   case MEMCACHED_CONNECTION_UDP:
   case MEMCACHED_CONNECTION_TCP:
-    fprintf(stdout, "TCP/UDP connection. trying to perform network connect\n");
-    server->logger->write(verbose_t::VERBOSE_INFO, "%s", "TCP/UDP connection. trying to perform network connect\n");
     rc= network_connect(server);
-   
+
     if (libmemcached_has_feature(LIBMEMCACHED_FEATURE_HAS_SASL))
     {
-      fprintf(stdout, "trying to authenticate through sasl\n");
       if (server->fd != INVALID_SOCKET and server->root->sasl.callbacks)
       {
         rc= memcached_sasl_authenticate_connection(server);
@@ -794,8 +778,6 @@ static memcached_return_t _memcached_connect(memcached_instance_st* server, cons
     break;
 
   case MEMCACHED_CONNECTION_UNIX_SOCKET:
-    fprintf(stdout, "UNIX socket connection. trying to perform network connect\n");
-    server->logger->write(verbose_t::VERBOSE_INFO, "%s", "TCP/UDP connection. trying to perform network connect\n");
     rc= unix_socket_connect(server);
     break;
   }
@@ -811,8 +793,6 @@ static memcached_return_t _memcached_connect(memcached_instance_st* server, cons
     set_last_disconnected_host(server);
     if (memcached_has_current_error(*server))
     {
-      fprintf(stdout, "network or authentication error. changing server's failure counts\n");
-      server->logger->write(verbose_t::VERBOSE_INFO, "%s", "network or authentication error. changing server's failure counts\n");
       memcached_mark_server_for_timeout(server);
       assert(memcached_failed(memcached_instance_error_return(server)));
     }

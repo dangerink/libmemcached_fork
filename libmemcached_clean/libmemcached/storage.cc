@@ -158,7 +158,6 @@ static memcached_return_t memcached_send_binary(Memcached *ptr,
   initialize_binary_request(server, request.message.header);
 
   request.message.header.request.opcode= get_com_code(verb, reply);
-  server->logger->write(verbose_t::VERBOSE_INFO, "%s %s %s %s", "trying to send request", storage_op_string(verb), "replymode:", reply?"true":"false");
   request.message.header.request.keylen= htons((uint16_t)(key_length + memcached_array_size(ptr->_namespace)));
   request.message.header.request.datatype= PROTOCOL_BINARY_RAW_BYTES;
   if (verb == APPEND_OP or verb == PREPEND_OP)
@@ -431,8 +430,6 @@ memcached_return_t memcached_set(memcached_st *ptr, const char *key, size_t key_
                                  time_t expiration,
                                  uint32_t flags)
 {
-  std::cout << "key:" << key << "\n";
-  std::cout << "value:" << value <<"\n";
   memcached_return_t rc;
   LIBMEMCACHED_MEMCACHED_SET_START();
   rc= memcached_send(ptr, key, key_length,

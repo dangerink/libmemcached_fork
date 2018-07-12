@@ -147,13 +147,6 @@ struct log_info_st
   {
     if (opt_file or opt_syslog)
     {
-      struct timeval curr_time;
-      gettimeofday(&curr_time, NULL);
-      time_t nowtime = curr_time.tv_sec;;
-      struct tm *nowtm;
-      nowtm = localtime(&nowtime);
-      char tmbuf[BUFSIZ];
-      strftime(tmbuf, sizeof tmbuf, "%Y-%m-%d %H:%M:%S", nowtm);
       va_list args;
       va_start(args, format);
       char mesg[BUFSIZ];
@@ -163,7 +156,7 @@ struct log_info_st
       if (opt_file)
       {
         char buffer[UTIL_MAX_ERROR_SIZE];
-        int buffer_length= snprintf(buffer, sizeof(buffer), "%s.%06ld %7s %.*s\n", tmbuf, curr_time.tv_usec, verbose_name(verbose), mesg_length, mesg);
+        int buffer_length= snprintf(buffer, sizeof(buffer), "%7s %.*s\n", verbose_name(verbose), mesg_length, mesg);
         if (::write(file(), buffer, buffer_length) == -1)
         {
           std::cerr << "Could not write to log file." << std::endl;

@@ -491,6 +491,7 @@ static memcached_return_t _io_fill(memcached_instance_st* instance)
   instance->read_data_length= (size_t) data_read;
   instance->read_buffer_length= (size_t) data_read;
   instance->read_ptr= instance->read_buffer;
+
   return MEMCACHED_SUCCESS;
 }
 
@@ -611,8 +612,7 @@ static bool _io_write(memcached_instance_st* instance,
   assert(memcached_is_udp(instance->root) == false);
 
   const char *buffer_ptr= static_cast<const char *>(buffer);
-  //Vlad 
-  instance->logger->write(verbose_t::VERBOSE_INFO, "raw write: %s", buffer_ptr);
+
   const size_t original_length= length;
 
   while (length)
@@ -865,7 +865,7 @@ memcached_return_t memcached_safe_read(memcached_instance_st* instance,
 
     offset+= size_t(nread);
   }
-  instance->logger->write(verbose_t::VERBOSE_INFO, "raw read: %s", dta);
+
   return MEMCACHED_SUCCESS;
 }
 

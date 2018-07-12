@@ -173,7 +173,6 @@ static void __memcached_free(Memcached *ptr, bool release_st)
 
 memcached_st *memcached_create(memcached_st *shell)
 {
-  fprintf(stdout, "trying to create client\n");
   if (shell)
   {
     shell->options.is_allocated= false;

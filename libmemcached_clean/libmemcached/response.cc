@@ -524,7 +524,7 @@ static memcached_return_t binary_read_one_response(memcached_instance_st* instan
   header.response.bodylen= ntohl(header.response.bodylen);
   header.response.cas= memcached_ntohll(header.response.cas);
   uint32_t bodylen= header.response.bodylen;
-  instance->logger->write(verbose_t::VERBOSE_INFO, "%s %x %x","response header status and opcode: ", header.response.status, header.response.opcode);
+
   if (header.response.status == PROTOCOL_BINARY_RESPONSE_SUCCESS or
       header.response.status == PROTOCOL_BINARY_RESPONSE_AUTH_CONTINUE)
   {
